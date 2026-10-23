@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f1e8">
+  <meta name="description" content="A calm, private group-chat catch-up powered by a local open-weight model.">
+  <title>SlothChat — let the chat come to you</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script type="module" src="/app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="SlothChat home"><span class="brand-mark">s</span><span>slothchat</span></a>
+    <div class="privacy"><span class="pulse"></span> Private by nature</div>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="eyebrow"><span>☼</span> YOUR GROUP CHAT, WITHOUT THE CATCH-UP</div>
+      <h1>Let the chat<br><em>come to you.</em></h1>
+      <p class="lede">Paste the conversation you missed. SlothChat finds the two-line recap, the things that matter, and the replies you can send when you feel like it.</p>
+      <div class="hero-note"><span class="sloth">◕ᴗ◕</span><span>Slow is a feature.<br><strong>Your messages stay on this device.</strong></span></div>
+    </section>
+
+    <section class="workspace" aria-label="Chat summarizer">
+      <div class="workspace-head"><div><span class="step">01</span><h2>Drop in the chat</h2></div><button id="sample" class="text-button" type="button">Try a sample <span>↗</span></button></div>
+      <label class="sr-only" for="chat">Paste a chat conversation</label>
+      <textarea id="chat" placeholder="Paste a chat export or a chunk of messages here…&#10;&#10;Mina: Anyone free to review the launch checklist?&#10;Rafi: I can do it after lunch."></textarea>
+      <div class="input-meta"><span id="count">0 characters</span><span>Only sent to Ollama running on this device</span></div>
+      <div class="controls">
+        <label class="model-label" for="model">LOCAL MODEL <span class="model-dot"></span></label>
+        <input id="model" value="llama3.2:3b" maxlength="80" aria-label="Ollama model name">
+        <button id="summarize" class="primary" type="button"><span class="button-label">Make it easy</span><span class="arrow">→</span></button>
+      </div>
+      <p class="hint">Uses Ollama locally. <code>ollama pull llama3.2:3b</code> to get started.</p>
+    </section>
+
+    <section id="result" class="result hidden" aria-live="polite">
+      <div class="result-head"><div><span class="step">02</span><h2>Your gentle catch-up</h2></div><button id="copy" class="text-button" type="button">Copy recap <span>⧉</span></button></div>
+      <div id="summary" class="summary"></div>
+      <div id="result-meta" class="result-meta"></div>
+    </section>
+    <p id="error" class="error hidden" role="alert"></p>
+    <footer><span>Made for people who don't need to read every message.</span><span>Open models. Your machine. Your pace. <b>♡</b></span></footer>
+  </main>
+</body>
+</html>
